@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    \LARGE \textbf{Основы машинного обучения}
+\end{center}
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.4pt}
+
+\vspace{1em}
+\textbf{Основные задачи ML:}
+\begin{itemize}
+    \item \textbf{Классификация} — определение объектов к определённым классам по общим признакам
+    \item \textbf{Регрессия} — прогнозирование величин, функций или событий
+    \item \textbf{Ранжирование} — упорядочивание входного набора данных
+\end{itemize}
+
+\vspace{1em}
+\noindent\rule{\linewidth}{0.4pt}
+
+\section*{Обучающая выборка}
+
+Представление объектов в виде различных векторов данных:
+
+\[
+x_i = [x_1, x_2, \ldots, x_n]^T =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+\]
+
+\textbf{Допустим, у нас дана матрица:}
+
+\[
+\begin{bmatrix}
+x_{11} & x_{12} & \ldots & x_{1n} \\
+x_{21} & x_{22} & \ldots & x_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+x_{m1} & x_{m2} & \ldots & x_{mn}
+\end{bmatrix}
+\]
+
+Здесь \( n \) — количество признаков объекта, а \( m \) — количество самих объектов.
+
+\end{document}
