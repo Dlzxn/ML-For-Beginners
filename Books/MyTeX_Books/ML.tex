@@ -9,12 +9,15 @@
     right=2cm
 ]{geometry}
 \usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
 \usetikzlibrary{positioning}
 
 \usepackage[T2A]{fontenc}     % шрифты для русского
 \usepackage[russian]{babel}   % русская локализация
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \begin{document}
 
@@ -44,164 +47,48 @@
 \end{titlepage}
 
 \newpage
+\centering
+{\Huge \textbf{Предисловие}}
+
+\newpage
+\centering
+{\Huge \textbf{Словарь}} \\
+\begin{itemize}
+
+\vspace{1.3cm}
+\item Вектор: X = [x_1, x_2, ..., x_n]
+\item Транспонированый вектор(обозначается X^T): X^T = \begin{bmatrix}
+                                                    x_1 \\
+                                                     x_2 \\
+                                                     ... \\
+                                                     x_n \\
+\end{bmatrix}
+    \item
+
+\end{itemize}
+
+\newpage
     \centering
     {\Huge \textbf{Содержание:}}
 
 
 \newpage
-    \centering
-    \textbf{\S 1 Введение в машинное обучение}
-    \vspace{1em}
-\noindent\rule{\linewidth}{0.4pt}
-
-\vspace{1em}
-\textbf{ Основные задачи ML:}
-\begin{itemize}
-    \item \textbf{Классификация} — определение объектов к определённым классам по общим признакам
-    \item \textbf{Регрессия} — прогнозирование величин, функций или событий
-    \item \textbf{Ранжирование} — упорядочивание входного набора данных
-\end{itemize}
-
-\vspace{1em}
-\noindent\rule{\linewidth}{0.4pt}
-
-\section*{1.1 Обучающая выборка}
-
-Представление объектов в виде различных векторов данных:
-
-\[
-    X = [x_1, x_2, \ldots, x_n]^T =  \begin{bmatrix}
-x_1 \\
-x_2 \\
-\vdots \\
-x_n
-\end{bmatrix}
-\]
-X - вектор входных данных
-
-\textbf{Допустим, у нас дана матрица:}
-
-\[A =
-\begin{bmatrix}
-x_{11} & x_{12} & \ldots & x_{1n} \\
-x_{21} & x_{22} & \ldots & x_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
-x_{m1} & x_{m2} & \ldots & x_{mn}
-\end{bmatrix}
-\]
-\raggedright
-Здесь A - матрица входных данных, \( n \) — количество признаков объекта, а \( m \) — количество самих объектов.
-
-Таким же видом представлены и выходные данные:
-
-\[
-    Y = [y_1, y_2, ... , y_n ]^T = \begin{bmatrix}
-                                       y_1 \\
-                                       y_2 \\
-                                       ...\\
-                                       y_m
-                                       \end{bmatrix}
-\]
-Y - вектор выходных данных
+\input{1-calcyles}
 
 \newpage
-Теперь мы рассмотрим важный вопрос: как же такие обьекты как изображения, звук и т. д. могут представляться в виде векторов? \\
-\vspace{1cm}
-    Допустим, на вход задаче подается Изображение:
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.4\textwidth]{images/snake.png}
-        \label{fig:example}
-    \end{figure}
-\\
-    Теперь важное замечание-\textbf{размерность вектора n будет зависеть от количества пикселей в изображении} \\
-    \vspace{1cm}
-    Например, если изображение 1024 на 256, то размерность вектора будет 1024*256 = 262144
-    \vspace{0.9cm}
-    \[X = [x_1, x_2, ... , x_{262144} ]
-    \]
+\input{2-LinAl}
 
-    \centering
-    \vspace{1cm}
-    Теперь \textbf{объединим} эти понятия:
-    \[
-        X^{'} = \{(x_i, y_i ) | 0 < i < m\} - \textbf{ размеченные данные(обучающая выборка)}
-    \]
-    Это и является одним из важнейших понятий в области машинного обучения, с которым вы будете встречаться всюду.
-\noindent\rule{\linewidth}{0.4pt}
+\newpage
+\input{3-TeorVer}
 
-    \newpage
-    \centering
-    \section*{\S 2 Постановка задачи для модели}
-    \vspace{1em}
-\raggedright
-    А теперь разберемся с тем, как же модель будет "обучаться": \\
-    \vspace{0.8cm}
-    Допустим, у нас есть размеченные данные (x_i, y_i), которые подаются в некоторую модель
+\newpage
+\input{4-ML}
 
-\usetikzlibrary{shapes.geometric, arrows.meta}
-
-\tikzset{
-    block/.style = {rectangle, draw, fill=blue!20, text centered, minimum height=3em, minimum width=6em},
-    arrow/.style = {thick, -{Latex[length=3mm]}},
-    data/.style = {circle, draw, fill=green!15, minimum size=2em, inner sep=1pt, text centered}
-}
+\newpage
+\input{examples}
 
 
-\begin{center}
-\begin{tikzpicture}[node distance=2cm and 2.5cm]
 
-% Входные данные
-\node[data] (x) {\(x\)};
-\node[data, below=of x] (y) {\(y\)};
-
-% Блок модели
-\node[block, right=3cm of $(x)!0.5!(y)$] (model) {Модель};
-
-% Выход
-\node[data, right=4cm of model] (output) {Предсказание};
-
-% Стрелки
-\draw[arrow] (x) -- ([yshift=+0.8em]model.west);
-\draw[arrow] (y) -- ([yshift=-0.8em]model.west);
-\draw[arrow] (model) -- (output);
-
-\end{tikzpicture}
-\end{center}
-
-В результате из исходных данных мы получили некое предсказание, которое на первых этапах обучения может не иметь ничего общего с правильным ответом. \\
-\vspace{1cm}
-    Теперь представим нашу модель как линейную функцию:
-    \[y(x) = \phi (x, \Delta)\]
-    Здесь \Delta - \textbf{постоянно меняющийся параметр} \\
-    Его мы будем подстраивать для наиболее точного ответа нашей модели \\
-    \vspace{1cm}
-    Для лучшего понимания перейдем к задаче линейной регрессии:
-    Задана функция:
-    \[
-        y(x, k, b) = kx + b + \psi
-    \]
-    Здесь k и b - параметры от которых зависит угол поворота прямой а так же ее сдвиг
-    Т.е. получается, что эта прямая может проходить как угодно, но за счет размеченных данных мы задаем модели желаемый результат:
-
-\begin{figure}[htbp]
-        \centering
-        \includegraphics[width=0.4\textwidth]{images/lin_regress.png}
-        \label{fig:example}
-    \end{figure}
-    И получается, что во время обучения модель дает прогнозы все точнее и точнее к желаемому результату. \\
-    \vspace{1cm}
-    Но как же наш алгоритм понимает, что ответ надо корректировать?\\
-    Сейчас мы подошли к еще одному очень важному определению в области ML: \\
-    \vspace{0.8cm}
-    \textbf{Функция потерь - функция, которая характеризует потери при неправильном предсказании модели}
-    Примеры таких функций:
-    \[
-        L(x, a) = |a(x) - y(x) |
-    \]- абсолютная ошибка
-    \[
-        L(x, a) = |a(x) - y(x) |^2
-    \]- квадратичная ошибка
 
 
 \end{document}
