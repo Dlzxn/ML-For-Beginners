@@ -1,0 +1,50 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{plt}
+
+\PYG{n}{x\PYGZus{}train} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{50}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{25}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{60}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{,} \PYG{l+m+mi}{70}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{l+m+mi}{40}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{30}\PYG{p}{,} \PYG{l+m+mi}{45}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{45}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{l+m+mi}{30}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{35}\PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{y\PYGZus{}train} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{n\PYGZus{}train} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x\PYGZus{}train}\PYG{p}{)}
+\PYG{n}{w} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{n}{a} \PYG{o}{=} \PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sign}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{*}\PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{N} \PYG{o}{=} \PYG{l+m+mi}{50}
+\PYG{n}{L} \PYG{o}{=} \PYG{l+m+mf}{0.1}
+\PYG{n}{e} \PYG{o}{=} \PYG{l+m+mf}{0.1}                                         \PYG{c+c1}{\PYGZsh{} небольшая добавка для w0}
+
+\PYG{n}{last\PYGZus{}error\PYGZus{}index} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+
+\PYG{k}{for} \PYG{n}{n} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n\PYGZus{}train}\PYG{p}{)}\PYG{p}{:}                \PYG{c+c1}{\PYGZsh{} перебор по наблюдениям}
+        \PYG{k}{if} \PYG{n}{y\PYGZus{}train}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{n}{a}\PYG{p}{(}\PYG{n}{x\PYGZus{}train}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+            \PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{n}{L} \PYG{o}{*} \PYG{n}{y\PYGZus{}train}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}
+            \PYG{n}{last\PYGZus{}error\PYGZus{}index} \PYG{o}{=} \PYG{n}{i}
+
+    \PYG{n}{Q} \PYG{o}{=} \PYG{n+nb}{sum}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{1} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n\PYGZus{}train}\PYG{p}{)} \PYG{k}{if} \PYG{n}{y\PYGZus{}train}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{n}{a}\PYG{p}{(}\PYG{n}{x\PYGZus{}train}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{Q} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}      \PYG{c+c1}{\PYGZsh{} показатель качества классификации (число ошибок)}
+        \PYG{k}{break}       \PYG{c+c1}{\PYGZsh{} останов, если все верно классифицируем}
+
+\PYG{k}{if} \PYG{n}{last\PYGZus{}error\PYGZus{}index} \PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{:}
+    \PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{n}{e} \PYG{o}{*} \PYG{n}{y\PYGZus{}train}\PYG{p}{[}\PYG{n}{last\PYGZus{}error\PYGZus{}index}\PYG{p}{]}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{w}\PYG{p}{)}
+
+\PYG{n}{line\PYGZus{}x} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{x\PYGZus{}train}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{line\PYGZus{}y} \PYG{o}{=} \PYG{p}{[}\PYG{n}{w}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{n}{x} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{line\PYGZus{}x}\PYG{p}{]}
+
+\PYG{n}{x\PYGZus{}0} \PYG{o}{=} \PYG{n}{x\PYGZus{}train}\PYG{p}{[}\PYG{n}{y\PYGZus{}train} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{]}                 \PYG{c+c1}{\PYGZsh{} формирование точек для 1\PYGZhy{}го}
+\PYG{n}{x\PYGZus{}1} \PYG{o}{=} \PYG{n}{x\PYGZus{}train}\PYG{p}{[}\PYG{n}{y\PYGZus{}train} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}                \PYG{c+c1}{\PYGZsh{} и 2\PYGZhy{}го классов}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{x\PYGZus{}0}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{x\PYGZus{}0}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{x\PYGZus{}1}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{x\PYGZus{}1}\PYG{p}{[}\PYG{p}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{blue}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{line\PYGZus{}x}\PYG{p}{,} \PYG{n}{line\PYGZus{}y}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{45}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{75}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{длина}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{ширина}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}\PYG{p}{(}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+
+\end{MintedVerbatim}

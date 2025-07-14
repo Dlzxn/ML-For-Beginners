@@ -18,6 +18,21 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{booktabs}   % красивые линии в таблицах
+\usepackage{float}      % для [H]
+\usepackage{listings}
+\usepackage{xcolor} % Для цвета (опционально)
+\usepackage{minted}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  breaklines=true
+}
 
 \begin{document}
 
@@ -56,13 +71,13 @@
 \begin{itemize}
 
 \vspace{1.3cm}
-\item Вектор: X = [x_1, x_2, ..., x_n]
-\item Транспонированый вектор(обозначается X^T): X^T = \begin{bmatrix}
+\item Вектор: \(X = [x_1, x_2, ..., x_n]\)
+\item Транспонированый вектор(обозначается \(\X^T): X^T = \begin{bmatrix}
                                                     x_1 \\
                                                      x_2 \\
                                                      ... \\
                                                      x_n \\
-\end{bmatrix}
+\end{bmatrix} \)
     \item
 
 \end{itemize}
