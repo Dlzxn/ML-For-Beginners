@@ -6,7 +6,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square&logo=github)](https://github.com/Dlzxn/ML-For-Beginners/pulls)
 [![Build PDF](https://img.shields.io/badge/PDF-ready-orange?style=flat-square&logo=adobeacrobatreader)](./ML-For-Beginners.pdf)
 ---
-![README.png](README.png)
+<img src="README.png" alt="ML FOR BEGINNERS" style="width:80%; max-width:2300px;"/>
 ---
 
 > **A clean, structured and beginner-friendly guide to Machine Learning — written entirely in LaTeX.**  
@@ -35,9 +35,7 @@
 
 ## 🚀 Getting Started
 
-To compile the LaTeX files locally:
-
+For start:
 ```bash
 git clone https://github.com/Dlzxn/ML-For-Beginners.git
 cd ML-For-Beginners
-pdflatex main.tex
